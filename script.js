@@ -35,6 +35,7 @@ function submit() {
     employeeInfo.push(newInfo);
 
     displayEmployees();
+    addSalaries();
 
 //select input by ID
     
@@ -63,12 +64,20 @@ function displayEmployees(){
 
 }//end display Employees 
 
-function calculator(){
-    console.log('in Calculator');
-    for (let i = 0; i < array.length; i++) {
-        $('#annualSalaryIn').on('click', )
-        
-        
-    }
+
+
+function addSalaries(){
+    let totalSalary = 0;
+
+    //go through employee list
+    for(let employee of employeeInfo){
+    totalSalary += Number(employee.annualSalary)
     
-}
+    }
+    console.log('test', totalSalary);
+    
+    
+    return totalSalary;
+ } // end addSalaries
+  
+
