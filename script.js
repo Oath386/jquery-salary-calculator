@@ -7,6 +7,7 @@ let employeeInfo = [];
 function onReady(){
     console.log('in onReady');
     $('#addSubmitButton').on('click', submit)
+   
     
 }//end on ready 
 
@@ -30,11 +31,12 @@ function submit() {
         $('#annualSalaryIn').val('');
 
     //end New Info
-    //push new info object into salaryCalculator arrray 
+    //push new info object into employeeInfo arrray 
 
     employeeInfo.push(newInfo);
 
     displayEmployees();
+    ///ask Robert About This
     addSalaries();
 
 //select input by ID
@@ -48,7 +50,7 @@ function displayEmployees(){
     let el= $('#employeesOut')
     //empty out element
     el.empty();
-    //loop through salaryCalculator Array
+    //loop through employeeInfo Array
     for(let i=0; i<employeeInfo.length; i++){
         el.append(`
         <tr>
@@ -57,27 +59,42 @@ function displayEmployees(){
         <td>${employeeInfo[i].id}</td>
         <td>${employeeInfo[i].title}</td>
         <td>${employeeInfo[i].annualSalary}</td>
+       
         `);
-    } //end displayEmployees
+       
+    
+
+
+        
+    }//end displayEmployees
+
+    }//end displayInfo
 
 
 
-}//end display Employees 
+//end display Employees 
 
 
 
 function addSalaries(){
+
     let totalSalary = 0;
 
+    let el = $('#totalMonthly').append(displayEmployees)
     //go through employee list
     for(let employee of employeeInfo){
     totalSalary += Number(employee.annualSalary)
+    
     
     }
     console.log('test', totalSalary);
     
     
     return totalSalary;
- } // end addSalaries
-  
 
+
+
+ } // end addSalaries
+
+
+  
