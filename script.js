@@ -7,7 +7,7 @@ let employeeInfo = [];
 function onReady(){
     console.log('in onReady');
     $('#addSubmitButton').on('click', submit)
-   
+    $('#addDeleteButton').on('click', )
     
 }//end on ready 
 
@@ -21,13 +21,14 @@ function submit() {
         firstName: $('#firstIn').val(),
         lastName: $('#lastIn').val(),
         id: $('#idIn').val(),
-        title: $('#title').val(),
+        title: $('#titleIn').val(),
         annualSalary: $('#annualSalaryIn').val()
     }
 
         $('#firstIn').val('');
         $('#lastIn').val('');
         $('#idIn').val('');
+        $('#titleIn').val('');
         $('#annualSalaryIn').val('');
 
     //end New Info
@@ -59,7 +60,8 @@ function displayEmployees(){
         <td>${employeeInfo[i].id}</td>
         <td>${employeeInfo[i].title}</td>
         <td>${employeeInfo[i].annualSalary}</td>
-       
+        <td><button>Delete</button></td>
+        </tr>
         `);
        
     
@@ -80,13 +82,31 @@ function addSalaries(){
 
     let totalSalary = 0;
 
-    let el = $('#totalMonthly').append(displayEmployees)
+    let el = $('#totalMonthly')
+
+    el.append(displayEmployees)
+
     //go through employee list
     for(let employee of employeeInfo){
     totalSalary += Number(employee.annualSalary)
     
     
     }
+
+    el.empty();
+
+    el.append(`
+    <h3>Total Monthly: $${totalSalary}</h3>
+    `)
+
+    if(totalSalary > 20000){
+    el.addClass('addRed')
+
+    }///end if 
+
+    
+    
+
     console.log('test', totalSalary);
     
     
@@ -96,5 +116,12 @@ function addSalaries(){
 
  } // end addSalaries
 
+ function deleteRow(){
+
+    
+
+
+ }// end deleteRow 
 
   
+//use i to reference the row 

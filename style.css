@@ -13,3 +13,7 @@ table{
     width: 100%;
     
 }
+
+.addRed {
+    background-color: red;
+}
