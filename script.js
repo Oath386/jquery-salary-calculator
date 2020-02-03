@@ -1,5 +1,12 @@
 console.log('test test test ');
 
+
+const formatter = new Intl.NumberFormat('en-US', {
+  style: 'currency',
+  currency: 'USD',
+  minimumFractionDigits: 2
+})
+
 $(document).ready(onReady);
 
 let employeeInfo = [];
@@ -58,7 +65,7 @@ function displayEmployees(){
         <td>${employeeInfo[i].lastName}</td>
         <td>${employeeInfo[i].id}</td>
         <td>${employeeInfo[i].title}</td>
-        <td>${employeeInfo[i].annualSalary}</td>
+        <td>${formatter.format(employeeInfo[i].annualSalary)}</td>
         <td><button class="addDelete row-${i}">Delete</button></td>
         </tr>
         `);
@@ -87,7 +94,7 @@ function addSalaries(){
 
     //go through employee list
     for(let employee of employeeInfo){
-    totalSalary += Number(employee.annualSalary)
+    totalSalary += Number(employee.annualSalary/12)
     
     
     }
@@ -95,7 +102,7 @@ function addSalaries(){
     el.empty();
 
     el.append(`
-    <h3>Total Monthly: $${totalSalary}</h3>
+    <h3>Total Monthly: ${formatter.format(totalSalary)}</h3>
     `)
 
     if(totalSalary > 20000){
@@ -117,9 +124,9 @@ function addSalaries(){
 
 
 function removeEmployee(){
-                           let rowDelete = this.classList[1];
+let rowDelete = this.classList[1];
                            let el = $(`#${rowDelete}`);
-                           let employeeToDelete = rowDelete.split("-")[1];
+                  let employeeToDelete = rowDelete.split("-")[1];
                            console.log(employeeToDelete);
                            el.remove();
 
@@ -128,12 +135,12 @@ function removeEmployee(){
                             * delete a row, so you should remove the employee at the index of the row you deleted from the employeeInfo
                             * array then do addSalaries again
                             * HINT: array.splice(index, 1);
-                            * what is array and what is index?
+                            * what is array dn
                             */
                            console.log(el);
 
                            console.log(rowDelete);
-                         }// end removeEmployee
+   }// end removeEmployee
 
   
         
