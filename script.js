@@ -7,8 +7,7 @@ let employeeInfo = [];
 function onReady(){
     console.log('in onReady');
     $('#addSubmitButton').on('click', submit)
-    $('#addDeleteButton').on('click', )
-    
+    $(document).on("click",'.addDelete', removeEmployee);
 }//end on ready 
 
 function submit() {
@@ -54,13 +53,13 @@ function displayEmployees(){
     //loop through employeeInfo Array
     for(let i=0; i<employeeInfo.length; i++){
         el.append(`
-        <tr>
+        <tr id="row-${i}">
         <td>${employeeInfo[i].firstName}</td>
         <td>${employeeInfo[i].lastName}</td>
         <td>${employeeInfo[i].id}</td>
         <td>${employeeInfo[i].title}</td>
         <td>${employeeInfo[i].annualSalary}</td>
-        <td><button>Delete</button></td>
+        <td><button class="addDelete row-${i}">Delete</button></td>
         </tr>
         `);
        
@@ -69,7 +68,7 @@ function displayEmployees(){
 
         
     }//end displayEmployees
-
+    
     }//end displayInfo
 
 
@@ -116,12 +115,26 @@ function addSalaries(){
 
  } // end addSalaries
 
- function deleteRow(){
 
-    
+function removeEmployee(){
+                           let rowDelete = this.classList[1];
+                           let el = $(`#${rowDelete}`);
+                           let employeeToDelete = rowDelete.split("-")[1];
+                           console.log(employeeToDelete);
+                           el.remove();
 
+                           /**
+                            * The reason its not working is because employeeInfo isn't being updated when you
+                            * delete a row, so you should remove the employee at the index of the row you deleted from the employeeInfo
+                            * array then do addSalaries again
+                            * HINT: array.splice(index, 1);
+                            * what is array and what is index?
+                            */
+                           console.log(el);
 
- }// end deleteRow 
+                           console.log(rowDelete);
+                         }// end removeEmployee
 
   
-//use i to reference the row 
+        
+    
